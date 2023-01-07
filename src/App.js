@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Child from "./Child";
+import { useState } from "react";
+// parent
 function App() {
+  const [dataFromChild, setDataFromChild] = useState(null);
+  // because we pass onGetdata = {getdata}
+  // so function getData have the same function value as onGetData
+
+  const getData = (data) => {
+    console.log(data);
+    setDataFromChild(data);
+
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <Child onGetdata={getData} />
+      <div>This is the data from child: {dataFromChild}</div>
     </div>
   );
 }
